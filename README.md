@@ -9,4 +9,3 @@ A set of shell alias files I use with `bash` and `zsh` for:
 - Terraform
 - Docker
 - Kubernetes
-- 
