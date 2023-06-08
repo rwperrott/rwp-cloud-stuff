@@ -1,9 +1,11 @@
 #!/bin/sh
 
+# Tag a local image for my docker repo
 function dhtag() {
   docker tag $1 docker4rwp/$1
 }
 
+# Upload a previously tagged local image to my docker repo
 function dhpush() {
   docker push docker4rwp/$1
 }
