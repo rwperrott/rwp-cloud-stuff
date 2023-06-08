@@ -1,4 +1,3 @@
-#!/bin/sh
 
 alias k=kubectl
 
@@ -8,11 +7,10 @@ complete -o default -F __start_kubectl k
 alias kversion='k version --output yaml'
 
 alias kall='k get all'
-alias knodes='k get nodes'
+alias kservices='k get services'
 alias knodes='k get nodes'
 alias kpods='k get pods'
 alias klogs='k get logs'
-alias kservices='k get services'
 
 alias kapply='k apply'
 alias kapplyf='kapply -f'
