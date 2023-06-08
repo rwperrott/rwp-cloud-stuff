@@ -2,7 +2,7 @@
 
 My miscellaneous cloud files
 
-## shell-aliases
+## Shell Aliases
 
 A set of shell alias files I use with `bash` and `zsh`, for:
 - AWS CLI
@@ -10,8 +10,10 @@ A set of shell alias files I use with `bash` and `zsh`, for:
 - Docker
 - Kubernetes
 
-- To install these aliases, append to ~/.bash_aliases or ~/.zshrc.
+- To install these aliases, 
+  - append to ~/.bash_aliases or ~/.zshrc.
+  - or copy file(s) to ~ and add `. ./<script name` to ~/.bash_aliases or ~/.zshrc.
 
-## alias refresh
+### Alias Refresh
 - To refresh aliases in bash, create new terminal, or type: `exec bash`
 - To refresh aliases in zsh, create new terminal, or type: `exec zsh`
