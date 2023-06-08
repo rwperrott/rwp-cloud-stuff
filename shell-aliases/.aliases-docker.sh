@@ -1,16 +1,14 @@
-#!/bin/sh
 
-# Tag a local image for my docker repo
-function dhtag() {
-  docker tag $1 docker4rwp/$1
-}
+# requires variables:
+# DOCKER_REPO
 
-# Upload a previously tagged local image to my docker repo
-function dhpush() {
-  docker push docker4rwp/$1
+# Tag and push a local named image to my repo on docker.
+dhpush() {
+  docker tag "$1" "$DOCKER_REPO"/"$1"
+  docker push "$DOCKER_REPO"/"$1"
 }
 
 # https://www.portainer.io/ a web UI for Docker
-alias portainer-init="sudo docker volume create portainer_data"
-alias portainer-start="sudo docker run -d -p 9000:9000 --name=portainer --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce"
-alias portainer="xdg-open http://localhost:9000"
+alias portainer-init='sudo docker volume create portainer_data'
+alias portainer-start='"sudo docker run -d -p 9000:9000 --name=portainer --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce'
+alias portainer='xdg-open http://localhost:9000'

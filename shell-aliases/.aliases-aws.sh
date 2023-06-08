@@ -1,20 +1,21 @@
-#!/bin/sh
 
-alias aws-ssh="ssh -i /home/richard/.aws/ssh//home/richard/.aws/pems"
+# requires variables:
+# AWS_PROFILE
+# AWS_REGION
+# AWS_SSO_SESSION
 
-# SSO Start URL: https://d-9c670d407f.awsapps.com/start#
-# SSO Region:    eu-west-2
-# SSO Session:   richard
-alias aws-configure-sso='aws configure sso --output json --profile AWSAdministratorAccess-777336335779 --region eu-west-2'
+alias aws-ssh="ssh -i ~/.aws/ssh/ ~/.aws/pems"
 
-alias aws-login='aws sso login --sso-session richard'
+alias aws-configure-sso='aws configure sso --output json --profile $AWS_PROFILE --region $AWS_REGION'
+
+alias aws-login='aws sso login --sso-session $AWS_SSO_SESSION'
 
 alias aws-logout='aws sso logout'
 
-alias aws-caller-id='aws sts get-caller-identity --query "Account" --profile AWSAdministratorAccess-777336335779'
+alias aws-caller-id='aws sts get-caller-identity --query "Account" --profile $AWS_PROFILE'
 
-function aws-is-login() {
-    SSO_ACCOUNT=$(aws sts get-caller-identity --query "Account" --profile AWSAdministratorAccess-777336335779)
+aws-is-login() {
+    SSO_ACCOUNT=$(aws sts get-caller-identity --query "Account" --profile "$AWS_PROFILE")
     #you can add a better check, but this is just an idea for quick check
     if [ ${#SSO_ACCOUNT} -eq 14 ];  then
         echo "session still valid" ;
@@ -24,11 +25,10 @@ function aws-is-login() {
 fi
 }
 
-alias aws-cli='aws $* --profile AWSAdministratorAccess-777336335779'
-
-aws-profile() {
-    export AWS_PROFILE='AWSAdministratorAccess-777336335779'
+aws-cli() {
+  aws $* --profile "$AWS_PROFILE"
 }
+
 
 aws-unset() {
     unset AWS_ACCESS_KEY_ID
