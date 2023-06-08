@@ -5,26 +5,32 @@
 alias tinit='terraform init'
 alias tvalidate='terraform validate'
 
-# The tplan, tapply, and tdestroy capture stdout & stderr, via tee to temp.ansi,
+# tplan, tapply, and tdestroy capture stdout & stderr, via tee to temp.ansi,
 #   and ansi2txt this to convert the captured ansi text into standard text for easier viewing
-#   e.g. in VSCode/VSCodium
+#   e.g. in VSCode, VSCodium, or IntelliJ IDEA, etc.
 #
 # See https://github.com/kilobyte/colorized-logs for ansi2txt.
 # To install ansi2txt on an ubuntu based OS, in a terminal, type: sudo apt install colorized-logs
 
 tplan() { # $* for options, like -help etc.
+  # shellcheck disable=SC2048
+  # shellcheck disable=SC2086
   terraform plan -out terraform.plan $* |& tee temp.ansi
   ansi2txt < temp.ansi > terraform.out.txt
   rm temp.ansi
 }
 
 tapply() { # $* for options, like -help etc.
+  # shellcheck disable=SC2048
+  # shellcheck disable=SC2086
   terraform apply $* |& tee temp.ansi
   ansi2txt < temp.ansi > terraform.out.txt
   rm temp.ansi
 }
 
 tdestroy() { # $* for options, like -help etc.
+  # shellcheck disable=SC2048
+  # shellcheck disable=SC2086
   terraform destroy $* |& tee temp.ansi
   ansi2txt < temp.ansi > terraform.out.txt
   rm temp.ansi
