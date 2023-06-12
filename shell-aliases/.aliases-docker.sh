@@ -1,11 +1,11 @@
 
 # requires variables:
-# DOCKER_REPO
+# DOCKER_HUB_USER
 
 # Tag and push a local named image to my repo on docker.
 dhpush() {
-  docker tag "$1" "$DOCKER_REPO"/"$1"
-  docker push "$DOCKER_REPO"/"$1"
+  docker tag "$1" "$DOCKER_HUB_USER"/"$1"
+  docker push "$DOCKER_HUB_USER"/"$1"
 }
 
 # https://www.portainer.io/ a web UI for Docker
